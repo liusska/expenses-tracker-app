@@ -1,0 +1,26 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+
+<h1>Create Expense</h1>
+<div class="form">
+    <form method="POST" action="{% url 'create expense' %}">
+
+
+        <label for="name">Title</label>
+        {{ form.title }}
+
+        <label for="description">Description</label>
+        {{ form.description}}
+
+        <label for="imageUrl">Link to Image</label>
+        {{ form.image_url }}
+
+        <label for="price">Price</label>
+        {{ form.price }}
+{% csrf_token %}
+        <input type="submit" value="Create">
+    </form>
+</div>
+
+{% endblock %}

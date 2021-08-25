@@ -1,0 +1,43 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+    {% if expenses %}
+        <div>
+            <h1>Summary</h1>
+            <ul class="expenses-list">
+                <li class="blue">${{ budget }}</li>
+                {% for expense in expenses %}
+                    <li class="red"> - ${{ expense.price }}</li>
+                {% endfor %}
+                <li class="green">= ${{ budget_left }} left</li>
+            </ul>
+        </div>
+    {% endif %}
+
+    <h1>My Expenses</h1>
+    <a class="button" href="{% url 'create expense' %}">Add Expense</a>
+    {% if expenses %}
+        <div class="expenses-container">
+            {% for expense in expenses %}
+                <div class="expense-container">
+                    <h2>{{ expense.title }}</h2>
+                    <hr>
+                    <img src="{{ expense.image_url }}">
+                    <p>{{ expense.description }}</p>
+                    <div class="expense-detail">
+                        <div>
+                            <p>Price: ${{ expense.price }}</p>
+                        </div>
+                        <div class="right">
+                            <a class="button edit" href="{% url 'edit expense' expense.id %}">Edit</a>
+                            <a class="button delete" href="{% url 'delete expense' expense.id %}">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+
+        </div>
+    {% endif %}
+{% endblock %}
+

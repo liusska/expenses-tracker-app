@@ -1,0 +1,22 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+        
+<h1>Enter your new data</h1>
+<div class="form">
+    <form method="POST">
+        <input type="hidden" name="csrfmiddlewaretoken" value="M6BlBJtidtTAjIVkeKKrO0pzGsJVBeMuJUjjBOd11b8tiULJ0qeyFSClYJH4npVf">
+        <label for="budget">Budget</label>
+        {{ form.budget }}
+
+        <label for="firstName">First Name</label>
+        {{ form.first_name }}
+
+        <label for="lastName">Last Name</label>
+        {{ form.last_name }}
+        {% csrf_token %}
+        <input type="submit" value="Edit">
+    </form>
+</div>
+
+{% endblock %}
